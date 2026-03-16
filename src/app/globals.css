@@ -3,13 +3,48 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-sans: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html, body {
+  font-family: var(--font-sans);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  /* Base */
+  --color-white: #ffffff;
+  --color-gray-1: #1b1d1e;
+  --color-gray-2: #333638;
+  --color-gray-3: #5c6265;
+  --color-gray-4: #b9bbbc;
+  --color-gray-5: #dddedf;
+  --color-gray-6: #eff0f0;
+  --color-gray-7: #fafafa;
+
+  /* Produto */
+  --color-red-dark: #bf3b44;
+  --color-red-mid: #f3babd;
+  --color-red-light: #f4e6e7;
+
+  --color-green-dark: #639339;
+  --color-green-mid: #cbe4b4;
+  --color-green-light: #e5f0db;
+
+  /* Fonte */
+  --font-sans: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: var(--font-geist-mono);
+  --line-height-default: 1.3;
+
+  --font-size-12: 12px;
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-18: 18px;
+  --font-size-24: 24px;
+  --font-size-32: 32px;
+
+  /* Mantém seus tokens atuais */
+  --color-background: var(--color-white);
+  --color-foreground: var(--color-gray-1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +57,6 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: var(--line-height-default);
 }
