@@ -46,10 +46,9 @@ Este style guide define cores, tipografia e tokens de base para garantir consist
 ### Tamanhos
 - `12px`, `14px`, `16px`, `18px`, `24px`, `32px`
 
-### Uso no CSS (exemplo)
-```css
-.title {
-  font-size: var(--font-size-24);
-  font-weight: 700;
-  line-height: var(--line-height-default);
-}
+### Uso no Tailwind (exemplo)
+```html
+<h1 class="text-[24px] font-bold leading-[1.3] font-[Nunito_Sans]">
+  Titulo
+</h1>
+```
