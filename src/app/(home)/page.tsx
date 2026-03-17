@@ -1,7 +1,7 @@
 "use client"
-import type { MealsByDate } from "@/types/meals"
+import type { MealsByDate } from "@/@types/meals"
 import { mealsMock } from "@/mock/melasMock"
-import MealsList from "./components/melasList"
+import MealsList from "./components/mealsList"
 import NewTaskButton from "./components/newTaskButton"
 import PercentageIndicator from "./components/percentageIndicator"
 
