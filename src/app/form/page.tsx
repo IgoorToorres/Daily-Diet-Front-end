@@ -1,4 +1,3 @@
-"use client"
 import DefaultHeader from "@/components/header"
 import MealForm from "@/components/mealForm"
 
