@@ -1,6 +1,6 @@
 "use client"
-import type { MealsByDate } from "@/src/@types/meals"
-import { mealsMock } from "@/src/mock/melasMock"
+import type { MealsByDate } from "@/types/meals"
+import { mealsMock } from "@/mock/melasMock"
 import MealsList from "./components/melasList"
 import NewTaskButton from "./components/newTaskButton"
 import PercentageIndicator from "./components/percentageIndicator"
