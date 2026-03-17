@@ -1,16 +1,23 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { PencilIcon, TrashIcon } from "@phosphor-icons/react"
+import { useRouter } from "next/navigation"
 
 interface ActionButtonsProps {
-  onDelete: () => void
-  onRedirect: () => void
+  id: string
 }
 
-export default function ActionButtons({
-  onDelete,
-  onRedirect,
-}: ActionButtonsProps) {
+export default function ActionButtons({ id }: ActionButtonsProps) {
+  const router = useRouter()
+
+  function onDelete() {
+    console.log("deletar refeicao")
+  }
+
+  function onRedirect() {
+    router.push(`/meal/${id}/edit`)
+  }
+
   return (
     <div className="w-full flex flex-col items-center mt-auto pb-10 px-10 gap-2">
       <Button className="w-full gap-2 py-5 " onClick={onRedirect}>

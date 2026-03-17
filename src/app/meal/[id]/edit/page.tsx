@@ -1,3 +1,9 @@
+import DefaultHeader from "@/components/header"
+
 export default function EditMealPage() {
-  return <div></div>
+  return (
+    <div className="min-h-screen flex flex-col">
+      <DefaultHeader title="Editar refeição" />
+    </div>
+  )
 }

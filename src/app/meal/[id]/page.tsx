@@ -15,14 +15,6 @@ export default async function MealPage({ params }: MealPageProps) {
 
   const meal = Meal
 
-  function onDelete() {
-    console.log("deletar refeicao")
-  }
-
-  function onRedirect() {
-    console.log("levar para rota de refeicao")
-  }
-
   return (
     <div className="min-h-screen flex flex-col">
       <DefaultHeader title="Refeição" className="bg-green-light" />
@@ -43,7 +35,7 @@ export default async function MealPage({ params }: MealPageProps) {
         </div>
       </div>
 
-      <ActionButtons onDelete={onDelete} onRedirect={onRedirect} />
+      <ActionButtons id={id} />
     </div>
   )
 }
