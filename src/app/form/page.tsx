@@ -1,4 +1,5 @@
 "use client"
+import DefaultHeader from "@/components/header"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -20,7 +21,6 @@ import {
 } from "@phosphor-icons/react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import FormHeader from "./components/header"
 
 export default function FormPage() {
   const router = useRouter()
@@ -45,7 +45,7 @@ export default function FormPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <FormHeader />
+      <DefaultHeader title="Nova refeição" />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
