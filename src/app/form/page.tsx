@@ -5,7 +5,7 @@ export default function FormPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <DefaultHeader title="Nova refeição" />
-      <MealForm state="create" />
+      <MealForm mode="create" />
     </div>
   )
 }
