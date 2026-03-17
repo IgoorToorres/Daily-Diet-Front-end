@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -42,7 +43,7 @@ export default function MealForm({ state, id }: MealFormProps) {
   async function onSubmit(data: MealFormData) {
     //TODO: mandar os dados para api
     console.log(data)
-    router.push(`/feedback?isOnDiet=${data.isOnDiet}`)
+    router.push(`/form/feedback?isOnDiet=${data.isOnDiet}`)
     form.reset()
   }
   return (
