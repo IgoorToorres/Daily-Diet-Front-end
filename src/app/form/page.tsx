@@ -18,10 +18,13 @@ import {
   ClockIcon,
   ForkKnifeIcon,
 } from "@phosphor-icons/react"
+import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import FormHeader from "./components/header"
 
 export default function FormPage() {
+  const router = useRouter()
+
   const form = useForm<MealFormData>({
     resolver: zodResolver(mealSchema),
     defaultValues: {
@@ -36,6 +39,7 @@ export default function FormPage() {
   async function onSubmit(data: MealFormData) {
     //TODO: mandar os dados para api
     console.log(data)
+    router.push(`/feedback?isOnDiet=${data.isOnDiet}`)
     form.reset()
   }
 
