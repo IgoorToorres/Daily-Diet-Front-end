@@ -1,4 +1,4 @@
-import type { MealsByDate } from "@/src/@types/meals"
+import type { MealsByDate } from "@/@types/meals"
 
 interface MealsListProps {
   meals: MealsByDate[]

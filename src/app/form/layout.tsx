@@ -1,14 +1,7 @@
-import FormHeader from "./components/header"
-
 export default function FormLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-    <div className="min-h-screen w-full bg-white">
-      <FormHeader />
-      {children}
-    </div>
-  )
+  return <div className="min-h-screen w-full bg-white">{children}</div>
 }
