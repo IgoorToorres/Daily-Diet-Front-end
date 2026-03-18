@@ -1,6 +1,6 @@
 import DefaultHeader from "@/components/header"
 import MealForm from "@/components/mealForm"
-import { Meal } from "@/mock/mealMock"
+import { GetMeal } from "@/http/get-meal"
 
 type EditMealPage = {
   params: Promise<{
@@ -10,10 +10,7 @@ type EditMealPage = {
 
 export default async function EditMealPage({ params }: EditMealPage) {
   const { id } = await params
-
-  //TODO: buscar meal pelo id
-
-  const meal = Meal
+  const meal = await GetMeal({ id })
 
   if (!meal) {
     return <div>Refeição não encontrada</div>
@@ -22,7 +19,7 @@ export default async function EditMealPage({ params }: EditMealPage) {
   return (
     <div className="min-h-screen flex flex-col">
       <DefaultHeader title="Editar refeição" />
-      <MealForm mode="edit" initialData={meal} />
+      <MealForm mode="edit" initialData={meal} mealId={id} />
     </div>
   )
 }

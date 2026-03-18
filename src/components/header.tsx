@@ -19,7 +19,10 @@ export default function DefaultHeader({
       <div className="flex items-center justify-center h-full w-full">
         {/** biome-ignore lint/a11y/useButtonType: <normal button> */}
         <button
-          onClick={() => router.back()}
+          onClick={() => {
+            router.refresh()
+            router.back()
+          }}
           className="absolute left-4 text-gray-2"
         >
           <ArrowLeftIcon size={25} />

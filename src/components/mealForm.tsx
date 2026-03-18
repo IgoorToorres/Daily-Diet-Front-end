@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { CreateMeal } from "@/http/create-meal"
+import { EditMeal } from "@/http/edit-meal"
 import { type MealFormData, mealSchema } from "@/schemas/meal.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
@@ -56,8 +57,6 @@ export default function MealForm({
   }
 
   async function handleCreate(data: MealFormData) {
-    //TODO: mandar os dados para api de cadastro
-
     try {
       await CreateMeal(data)
       router.push(`/form/feedback?isOnDiet=${data.isOnDiet}`)
@@ -68,10 +67,14 @@ export default function MealForm({
   }
 
   async function handleEdit(data: MealFormData) {
-    //TODO: mandar os dados para api de edicao
-
-    console.log("editar", mealId, data)
-    router.back()
+    try {
+      await EditMeal({ ...data, id: mealId })
+      router.refresh()
+      router.back()
+      form.reset()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (

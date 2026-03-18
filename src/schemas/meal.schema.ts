@@ -1,6 +1,7 @@
 import { z } from "zod"
 
 export const mealSchema = z.object({
+  id: z.uuid().optional(),
   name: z
     .string()
     .min(1, "O nome é obrigatório")
