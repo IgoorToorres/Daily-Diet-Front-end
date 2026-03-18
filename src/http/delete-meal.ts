@@ -1,24 +1,20 @@
 "use server"
 import { clientEnv } from "@/env"
-import type { MealFormData } from "@/schemas/meal.schema"
-import { cookies, headers } from "next/headers"
+import { headers } from "next/headers"
 import { getCookiesFromHeaders } from "./utils/get-cookies-from-header"
 
-export async function EditMeal({
-  id,
-  name,
-  description,
-  date,
-  time,
-  isOnDiet,
-}: MealFormData) {
+interface DeleteMealParams {
+  id: string
+}
+
+export async function DeleteMeal({ id }: DeleteMealParams) {
   const url = new URL(`/meals/${id}`, clientEnv.NEXT_PUBLIC_API_URL)
 
   const incomingHeaders = await headers()
 
   const response = await fetch(url, {
-    method: "PUT",
-    body: JSON.stringify({ name, description, date, time, isOnDiet }),
+    method: "DELETE",
+    body: JSON.stringify({}),
     headers: getCookiesFromHeaders(incomingHeaders),
   })
 

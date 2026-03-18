@@ -1,5 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button"
+import { DeleteMeal } from "@/http/delete-meal"
 import { PencilIcon, TrashIcon } from "@phosphor-icons/react"
 import { useRouter } from "next/navigation"
 
@@ -10,7 +11,14 @@ interface ActionButtonsProps {
 export default function ActionButtons({ id }: ActionButtonsProps) {
   const router = useRouter()
 
-  function onDelete() {
+  async function onDelete() {
+    try {
+      await DeleteMeal({ id })
+      router.refresh()
+      router.push("/")
+    } catch (error) {
+      console.error(error)
+    }
     console.log("deletar refeicao")
   }
 
