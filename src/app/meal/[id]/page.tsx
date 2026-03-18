@@ -1,5 +1,5 @@
 import DefaultHeader from "@/components/header"
-import { Meal } from "@/mock/mealMock"
+import { GetMeal } from "@/http/get-meal"
 import ActionButtons from "./components/actionButtons"
 
 type MealPageProps = {
@@ -10,10 +10,7 @@ type MealPageProps = {
 
 export default async function MealPage({ params }: MealPageProps) {
   const { id } = await params
-
-  //TODO: resgatar meal especifica pelo id
-
-  const meal = Meal
+  const meal = await GetMeal({ id })
 
   return (
     <div className="min-h-screen flex flex-col">
