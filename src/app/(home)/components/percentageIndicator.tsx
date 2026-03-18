@@ -1,3 +1,4 @@
+"use client"
 import { ArrowUpRightIcon } from "@phosphor-icons/react"
 import Link from "next/link"
 

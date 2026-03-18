@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { CreateMeal } from "@/http/create-meal"
 import { type MealFormData, mealSchema } from "@/schemas/meal.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
@@ -27,7 +28,11 @@ interface MealFormProps {
   initialData?: MealFormData
 }
 
-export default function MealForm({ mode, mealId, initialData }: MealFormProps) {
+export default function MealForm({
+  mode = "create",
+  mealId,
+  initialData,
+}: MealFormProps) {
   const router = useRouter()
 
   const form = useForm<MealFormData>({
@@ -53,9 +58,13 @@ export default function MealForm({ mode, mealId, initialData }: MealFormProps) {
   async function handleCreate(data: MealFormData) {
     //TODO: mandar os dados para api de cadastro
 
-    console.log("criar", data)
-    router.push(`/form/feedback?isOnDiet=${data.isOnDiet}`)
-    form.reset()
+    try {
+      await CreateMeal(data)
+      router.push(`/form/feedback?isOnDiet=${data.isOnDiet}`)
+      form.reset()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   async function handleEdit(data: MealFormData) {
@@ -181,7 +190,7 @@ export default function MealForm({ mode, mealId, initialData }: MealFormProps) {
                     type="button"
                     variant="dietYes"
                     size="diet"
-                    data-mode={field.value === true ? "active" : "inactive"}
+                    data-state={field.value === true ? "active" : "inactive"}
                     onClick={() => field.onChange(true)}
                   >
                     <span className="size-2 rounded-full bg-green-700" />
@@ -192,7 +201,7 @@ export default function MealForm({ mode, mealId, initialData }: MealFormProps) {
                     type="button"
                     variant="dietNo"
                     size="diet"
-                    data-mode={field.value === false ? "active" : "inactive"}
+                    data-state={field.value === false ? "active" : "inactive"}
                     onClick={() => field.onChange(false)}
                   >
                     <span className="size-2 rounded-full bg-red-500" />

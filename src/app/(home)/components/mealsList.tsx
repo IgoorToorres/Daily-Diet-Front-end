@@ -10,9 +10,7 @@ export default function MealsList({ meals }: MealsListProps) {
     <div className="flex flex-col mt-10">
       {meals.map((meal) => (
         <div key={meal.date} className="mb-6">
-          <span className="font-bold text-gray-1">
-            {new Date(meal.date).toLocaleDateString("pt-BR")}
-          </span>
+          <span className="font-bold text-gray-1">{meal.date}</span>
 
           {meal.meals.map((m) => (
             <Link href={`/meal/${m.id}`} key={m.id}>
