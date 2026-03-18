@@ -22,6 +22,7 @@ import {
 } from "@phosphor-icons/react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
+import InputMask from "react-input-mask"
 
 interface MealFormProps {
   mode: "create" | "edit"
@@ -144,11 +145,22 @@ export default function MealForm({
                       className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-3"
                       size={20}
                     />
-                    <Input
-                      className="h-12 pl-10"
-                      placeholder="--/--/--"
-                      {...field}
-                    />
+                    <InputMask
+                      mask="99/99/9999"
+                      maskChar={null}
+                      value={field.value ?? ""}
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
+                      inputRef={field.ref}
+                    >
+                      {(inputProps) => (
+                        <Input
+                          {...inputProps}
+                          className="h-12 pl-10"
+                          placeholder="--/--/----"
+                        />
+                      )}
+                    </InputMask>
                   </div>
                 </FormControl>
                 <FormMessage className="text-red-500" />
@@ -168,11 +180,22 @@ export default function MealForm({
                       className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-3"
                       size={20}
                     />
-                    <Input
-                      className="h-12 pl-10"
-                      placeholder="--:--"
-                      {...field}
-                    />
+                    <InputMask
+                      mask="99:99"
+                      maskChar={null}
+                      value={field.value ?? ""}
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
+                      inputRef={field.ref}
+                    >
+                      {(inputProps) => (
+                        <Input
+                          {...inputProps}
+                          className="h-12 pl-10"
+                          placeholder="--:--"
+                        />
+                      )}
+                    </InputMask>
                   </div>
                 </FormControl>
                 <FormMessage className="text-red-500" />
