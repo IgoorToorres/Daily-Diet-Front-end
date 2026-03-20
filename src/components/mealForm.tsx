@@ -22,7 +22,28 @@ import {
 } from "@phosphor-icons/react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import InputMask from "react-input-mask"
+
+function formatDate(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 8)
+  const day = digits.slice(0, 2)
+  const month = digits.slice(2, 4)
+  const year = digits.slice(4, 8)
+
+  let result = day
+  if (month.length > 0) result += `/${month}`
+  if (year.length > 0) result += `/${year}`
+  return result
+}
+
+function formatTime(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 4)
+  const hour = digits.slice(0, 2)
+  const minute = digits.slice(2, 4)
+
+  let result = hour
+  if (minute.length > 0) result += `:${minute}`
+  return result
+}
 
 interface MealFormProps {
   mode: "create" | "edit"
@@ -145,22 +166,19 @@ export default function MealForm({
                       className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-3"
                       size={20}
                     />
-                    <InputMask
-                      mask="99/99/9999"
-                      maskChar={null}
+                    <Input
+                      ref={field.ref}
+                      name={field.name}
                       value={field.value ?? ""}
-                      onChange={field.onChange}
+                      onChange={(event) =>
+                        field.onChange(formatDate(event.target.value))
+                      }
                       onBlur={field.onBlur}
-                      inputRef={field.ref}
-                    >
-                      {(inputProps) => (
-                        <Input
-                          {...inputProps}
-                          className="h-12 pl-10"
-                          placeholder="--/--/----"
-                        />
-                      )}
-                    </InputMask>
+                      inputMode="numeric"
+                      autoComplete="off"
+                      className="h-12 pl-10"
+                      placeholder="--/--/----"
+                    />
                   </div>
                 </FormControl>
                 <FormMessage className="text-red-500" />
@@ -180,22 +198,19 @@ export default function MealForm({
                       className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-3"
                       size={20}
                     />
-                    <InputMask
-                      mask="99:99"
-                      maskChar={null}
+                    <Input
+                      ref={field.ref}
+                      name={field.name}
                       value={field.value ?? ""}
-                      onChange={field.onChange}
+                      onChange={(event) =>
+                        field.onChange(formatTime(event.target.value))
+                      }
                       onBlur={field.onBlur}
-                      inputRef={field.ref}
-                    >
-                      {(inputProps) => (
-                        <Input
-                          {...inputProps}
-                          className="h-12 pl-10"
-                          placeholder="--:--"
-                        />
-                      )}
-                    </InputMask>
+                      inputMode="numeric"
+                      autoComplete="off"
+                      className="h-12 pl-10"
+                      placeholder="--:--"
+                    />
                   </div>
                 </FormControl>
                 <FormMessage className="text-red-500" />
